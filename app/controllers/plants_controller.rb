@@ -5,7 +5,11 @@ class PlantsController < ApplicationController
     end
     def create
         plant = Plant.create(plant_params)
-        render json: plant
+        if plant.valid?
+            render json: plant
+        else
+            render json: plant.errors, status: 422
+        end
     end
     private
     def plant_params
