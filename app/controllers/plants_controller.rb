@@ -18,6 +18,7 @@ def update
         render json: plant
     else 
         render json: plant.errors, status: 422
+    end
 end
 
     private
