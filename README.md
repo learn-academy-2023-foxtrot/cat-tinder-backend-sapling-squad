@@ -197,3 +197,6 @@ def create
   end
 end
 ```
+
+added .DS_Store to our .gitignore file because it was tracking me entering with the graphical user interface.
+
