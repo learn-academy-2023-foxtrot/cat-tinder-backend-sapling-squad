@@ -80,4 +80,19 @@ RSpec.describe "Plants", type: :request do
     expect(updated_plant.image).to eq 'https://images.unsplash.com/photo-1615895963378-661e55f802d1?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGFsbSUyMHRyZWV8ZW58MHx8MHx8fDA%3D'
     end
   end
+  describe "DELETE /destroy" do
+    it "deletes a plant" do
+      plant = Plant.create(
+        name: 'Pine Tree',
+        age: 21,
+        enjoys: 'Enjoys being in direct sunlight between 60 and 72 degrees',
+        image: 'https://images.unsplash.com/photo-1637967886160-fd78dc3ce3f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHByYXllciUyMHBsYW50c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=400&q=60'
+      )
+
+      expect(Plant.exists?(plant.id)).to be_truthy
+      expect { delete plant_path(plant) }.to change(Plant, :count).by(-1)
+      expect(Plant.exists?(plant.id)).to be_falsey
+    end
+  end
+  
 end
